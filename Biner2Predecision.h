@@ -70,6 +70,6 @@ int Biner2Predecision(){
     else if (Desimal == 0b11111011) {Hasil = 20;}
     else if (Desimal == 0b11111101) {Hasil = 30;}
     else if (Desimal == 0b11111110) {Hasil = 40;}
-
+    Serial.print(Desimal); Serial.print(" ");
     return Hasil;
 }

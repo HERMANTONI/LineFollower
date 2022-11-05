@@ -15,9 +15,9 @@ void setup() {
 }
 
 void loop() {
-  //int Desimal = Sensor2Biner();
-  //Serial.print(Desimal); Serial.print(" ");
-  //Serial.print(Desimal, BIN); Serial.println(" ");
+  // int Desimal = Sensor2Biner();
+  // Serial.print(Desimal); Serial.print(" ");
+  // Serial.print(Desimal, BIN); Serial.println(" ");
   int Decision = Biner2Predecision();
   Serial.print(Decision); Serial.println(" ");
   delay(500);
