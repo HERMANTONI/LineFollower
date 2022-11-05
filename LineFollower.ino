@@ -7,6 +7,8 @@
  * 
  */
 
+#include "Sensor2Biner.h"
+
 void setup() {
   Serial.begin(115200);
 }
