@@ -1,3 +1,12 @@
+/*
+ * Developer  : Hermantoni
+ * Email      : hermantoni0510@gmail.com
+ * Board      : Arduino nano
+ * Kategori   : LineFollower
+ * Bagian     : Sensor2Biner
+ * 
+ */
+
 byte Pangkat[] = {1, 2, 4, 8, 16, 32, 64, 128};
 
 int Sensor2Biner() {
