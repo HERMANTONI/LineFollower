@@ -18,12 +18,14 @@ float Predecision2PID(float Data){
   Porposional = Error * KonstantaP;
   if (-0.5 < Error <0.5){
     Integral = Integral + (KonstantaI * Error);
+    if (Integral > 150){ Integral = 150;}
+    else if (Integral < -150){ Integral = -150;}
   }
   unsigned long Time = millis();
   ElapsedTime = (Time - LastTime) / 1;
   Derivatif = KonstantaD * ((Error - LastError)/ElapsedTime);
   float PID = Porposional + Integral + Derivatif;
-	Serial.print("Check = "); Serial.print(ElapsedTime); Serial.print(" ");
+	Serial.print("Check = "); Serial.print(ElapsedTime); Serial.print("\t");
 	LastTime = Time; LastError = Error;
 	return PID;
 }

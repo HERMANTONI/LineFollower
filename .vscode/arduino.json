@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:uno",
     "programmer": "arduino:arduinoisp",
-    "port": "COM4",
+    "port": "COM7",
     "sketch": "LineFollower.ino"
 }

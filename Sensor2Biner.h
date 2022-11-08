@@ -20,8 +20,8 @@ int Sensor2Biner() {
     if (Sensor[a] > Hitam[a]) {
       int Temp = Pangkat[a];
       TempSensor = TempSensor | Temp;
-      //Serial.print(Temp); Serial.print(" ");
-      //Serial.print(Temp, BIN); Serial.println(" ");
+      //Serial.print(Temp); Serial.print("\t");
+      //Serial.print(Temp, BIN); Serial.println("\t");
     }
   }
   return TempSensor;
