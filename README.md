@@ -11,6 +11,7 @@ sudah dikerjakan :
 1. baca sensor ke biner 👌
 2. biner ke pra keputusan 👌
 3. pra keputusan ke pid 👌
+
 yang belum :
 1. pid ke keputusan dan Motor
 2. menentukan pertigaan/perempatan/tikungan
