@@ -20,6 +20,7 @@ float Predecision2PID(float Data){
     Integral = Integral + (KonstantaI * Error);
     if (Integral > 150){ Integral = 150;}
     else if (Integral < -150){ Integral = -150;}
+    else {;}
   }
   unsigned long Time = millis();
   ElapsedTime = (Time - LastTime) / 1;

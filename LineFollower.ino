@@ -11,9 +11,16 @@
 #include "Biner2Predecision.h"
 #include "Predecision2PID.h"
 #include "PID2Decision.h"
+#include "Motor.h"
+
+#define MotorKanan0 4
+#define MotorKanan1 5
+#define MotorKiri1 6
+#define MotorKiri0 7
 
 void setup() {
   Serial.begin(115200);
+  InitMotor();
 }
 
 void loop() {
