@@ -8,7 +8,7 @@
  */
 
 float SetPoint = 3.5, LastError = 0;
-float KonstantaP = 0.1, KonstantaI = 0.1, KonstantaD = 0.1, Integral;
+float KonstantaP = 3, KonstantaI = 0, KonstantaD = 0, Integral;
 unsigned long ElapsedTime, LastTime;
 
 float Predecision2PID(float Data){

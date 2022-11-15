@@ -33,7 +33,7 @@ int PID2Decision(int PID){ //kiri minus kanan plus
 		SpeedKanan = SpeedKanan - PID;
 	}
 	else {
-		if (SpeedKiri < 150 or SpeedKanan < 150){
+		if (SpeedKiri < 130 or SpeedKanan < 130){
 			SpeedKiri += 1 ; SpeedKanan += 1;
 			// delay(1000);
 		}
