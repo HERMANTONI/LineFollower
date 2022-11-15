@@ -29,3 +29,5 @@ void RunMotor(){
 	// Serial.print("Kanan1 = "); Serial.print(Kanan1); Serial.print("\t");
 	// Serial.print("Kanan0 = "); Serial.print(Kanan0); Serial.print("\t");
 }
+
+
