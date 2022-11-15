@@ -59,7 +59,7 @@ int Sensor2Biner() {
       }
     }
     return TempSensor;
-  }
+  } 
   else {
     for (int a = 0; a < 8; a++) {
       Sensor[a] = analogRead(a);

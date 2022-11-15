@@ -6,7 +6,7 @@
  * Bagian     : Predecision2PID
  * 
  */
-
+ 
 float SetPoint = 3.5, LastError = 0;
 float KonstantaP = 3, KonstantaI = 0, KonstantaD = 0, Integral;
 unsigned long ElapsedTime, LastTime;

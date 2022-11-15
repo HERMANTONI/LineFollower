@@ -4,8 +4,9 @@
  * Board      : Arduino nano
  * Kategori   : LineFollower
  * Bagian     : PID2Decision
- * 
+ *  
  */
+
 int Kiri1, Kiri0, Kanan1, Kanan0;
 int SpeedKiri = 20, SpeedKanan = 20;
 int PID2Decision(int PID){ //kiri minus kanan plus
@@ -30,8 +31,8 @@ int PID2Decision(int PID){ //kiri minus kanan plus
 		}
 		PID = PID * -1;
 		SpeedKiri = SpeedKiri + (PID/4);
-		SpeedKanan = SpeedKanan - PID;
-	}
+		SpeedKanan = SpeedKanan - PID; 
+	} 
 	else {
 		if (SpeedKiri < 130 or SpeedKanan < 130){
 			SpeedKiri += 1 ; SpeedKanan += 1;

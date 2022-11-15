@@ -7,6 +7,7 @@
  * 
  */
 
+
 int LogTrack[100];
 int PosTrack;
 
@@ -33,7 +34,7 @@ int SaveTrack(int Track, int CountTrack){ //Track 1=Kiri, 2=Kanan, 3=Lurus; Coun
     }
     return tempLog;
 }
-
+ 
 void PutarArah(int Arah){ //1=Kiri, 2=Kanan, 3=PutarBalik
     // if (Arah == 1){
     //     while(1){

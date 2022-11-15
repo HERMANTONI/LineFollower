@@ -4,7 +4,7 @@
  * Board      : Arduino nano
  * Kategori   : LineFollower
  * Bagian     : ProgramUtama
- * 
+ *  
  */
 
 #include "Library/Sensor2Biner.h"

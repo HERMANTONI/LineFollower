@@ -34,7 +34,7 @@ int Biner2Predecision(int Desimal){
 	else if (Desimal == 0b00011100) {Hasil = 10;}
 	else if (Desimal == 0b00111000) {Hasil = -10;}
 	else if (Desimal == 0b01110000) {Hasil = -25;}
-	else if (Desimal == 0b11100000) {Hasil = -35;}
+	else if (Desimal == 0b11100000) {Hasil = -35;} 
 	//===========================================
 	else if (Desimal == 0b11110000) {Hasil = -35;}
 	else if (Desimal == 0b01111000) {Hasil = -25;}
