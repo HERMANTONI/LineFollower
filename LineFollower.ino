@@ -7,17 +7,18 @@
  *  
  */
 
+#include "Library/Motor.h"
 #include "Library/Sensor2Biner.h"
 #include "Library/Biner2Predecision.h"
 #include "Library/Predecision2PID.h"
 #include "Library/PID2Decision.h"
-#include "Library/Motor.h"
 #include "Library/SaveTrack.h"
 
 // #define MotorKanan0 8
 // #define MotorKanan1 6
 // #define MotorKiri1 5
 // #define MotorKiri0 7
+int LastPredecision;
 
 void setup() {
   Serial.begin(115200);
@@ -55,10 +56,25 @@ void loop() {
     // Serial.print(Biner); Serial.print("\t"); Serial.print(Biner, BIN); Serial.print("\t");
     int Predecision = Biner2Predecision(Biner);
     Serial.print("Predecision = "); Serial.print(Predecision); Serial.print("\t");
-    if (Predecision != 255){
-      int PID = Predecision2PID(Predecision);
-      PID2Decision(PID);
+    if (Predecision == 254){
+      int PID = Predecision2PID(LastPredecision);
+      PID2Decision2(PID);
       RunMotor(Kiri1,Kiri0,Kanan1,Kanan0);
+      Serial.print("PID = "); Serial.print(PID); Serial.print("\t");
+      Serial.print("Kiri = "); Serial.print(Kiri1); Serial.print("\t"); Serial.print(Kiri0); Serial.print("\t");
+      Serial.print("Kanan = "); Serial.print(Kanan1); Serial.print("\t"); Serial.print(Kanan0); Serial.print("\t");
+    }
+    else if (Predecision <= 40 and Predecision >= -40){
+      LastPredecision = Predecision;
+      int PID = Predecision2PID(Predecision);
+      PID2Decision2(PID);
+      RunMotor(Kiri1,Kiri0,Kanan1,Kanan0);
+      Serial.print("PID = "); Serial.print(PID); Serial.print("\t");
+      Serial.print("Kiri = "); Serial.print(Kiri1); Serial.print("\t"); Serial.print(Kiri0); Serial.print("\t");
+      Serial.print("Kanan = "); Serial.print(Kanan1); Serial.print("\t"); Serial.print(Kanan0); Serial.print("\t");
+    }
+    else if (Predecision == 255){
+      RunMotor(0,0,0,0);
     }
     Serial.println("\t");
     delay(100);

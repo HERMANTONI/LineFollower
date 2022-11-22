@@ -9,7 +9,7 @@
 
 int Biner2Predecision(int Desimal){
 	int Hasil = 0;
-	if (Desimal == 0b00000000) {Hasil = 255;}
+	if (Desimal == 0b00000000) {Hasil = 254;}
 	else if (Desimal == 0b11111111) {Hasil = 255;}
 	//==========================================
 	else if (Desimal == 0b00000001) {Hasil = 35;}

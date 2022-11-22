@@ -8,14 +8,14 @@
  */
  
 float SetPoint = 0, LastError = 0;
-float KonstantaP = 3, KonstantaI = 0.1, KonstantaD = 0.1, Integral;
+float KonstantaP = 1, KonstantaI = 0.2, KonstantaD = 0.7, Integral;
 unsigned long ElapsedTime, LastTime;
 
 float Predecision2PID(float Data){
 	float Porposional, Derivatif;
   // Serial.print("Data = "); Serial.print(Data); Serial.print("\t");
   Data = Data;
-	float Error = SetPoint - Data;
+	float Error = Data - SetPoint;
   // Serial.print("SP = "); Serial.print(SetPoint); Serial.print("\t");
   Porposional = Error * KonstantaP;
   if (Error == 0){
