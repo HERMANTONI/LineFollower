@@ -19,11 +19,11 @@ void InitMotor(){
 	pinMode(MotorKiri0, OUTPUT);
 }
 
-void RunMotor(){
-  analogWrite(MotorKanan1, Kanan1);
-  digitalWrite(MotorKanan0, Kanan0);
-  analogWrite(MotorKiri1, Kiri1);
-  digitalWrite(MotorKiri0, Kiri0);
+void RunMotor(int R1, int R0, int L1, int L0){
+  analogWrite(MotorKanan1, R1);
+  digitalWrite(MotorKanan0, R0);
+  analogWrite(MotorKiri1, L1);
+  digitalWrite(MotorKiri0, L0);
   // Serial.print("Kiri1 = "); Serial.print(Kiri1); Serial.print("\t");
 	// Serial.print("Kiri0 = "); Serial.print(Kiri0); Serial.print("\t");
 	// Serial.print("Kanan1 = "); Serial.print(Kanan1); Serial.print("\t");

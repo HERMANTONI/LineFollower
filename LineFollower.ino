@@ -38,6 +38,8 @@ void setup() {
   // PutarArah(3);
   // while(1){
   //   Sensor2Biner();
+  //   Serial.println();
+  //   delay(100);
   // }
 }
 
@@ -52,24 +54,13 @@ void loop() {
     int Biner = Sensor2Biner();
     // Serial.print(Biner); Serial.print("\t"); Serial.print(Biner, BIN); Serial.print("\t");
     int Predecision = Biner2Predecision(Biner);
-    // Serial.print("Predecision = "); Serial.print(Predecision); Serial.print("\t");
-    if (Predecision != 255){;
+    Serial.print("Predecision = "); Serial.print(Predecision); Serial.print("\t");
+    if (Predecision != 255){
       int PID = Predecision2PID(Predecision);
-      // Serial.print("PID = "); Serial.print(PID); Serial.print("\t");
       PID2Decision(PID);
-      RunMotor();
-      logPID = PID;
+      RunMotor(Kiri1,Kiri0,Kanan1,Kanan0);
     }
-    else {
-      int PID = Predecision2PID(0);
-      // Serial.print("PID = "); Serial.print(PID); Serial.print("\t");
-      PID2Decision(PID);
-      // RunMotor();
-      logPID = PID;
-    }
-
-    // Serial.println("\t");
-    // delay(100);
+    Serial.println("\t");
+    delay(100);
   }
-  
 }

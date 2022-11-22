@@ -82,8 +82,8 @@ int Biner2Predecision(int Desimal){
 	else if (Desimal == 0b00100100) {Hasil = 0;}
 	else if (Desimal == 0b01001000) {Hasil = -15;}
 	else if (Desimal == 0b10010000) {Hasil = -25;}
-	else if (Desimal > 16) {Hasil = -35;}
-	else if (Desimal <= 16) {Hasil = -35;}
+	// else if (Desimal > 16) {Hasil = -35;}
+	// else if (Desimal <= 16) {Hasil = -35;}
 	// Serial.print(Desimal); Serial.print("\t");
 
 	return Hasil;

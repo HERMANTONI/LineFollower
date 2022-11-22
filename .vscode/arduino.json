@@ -1,7 +1,7 @@
 {
     "board": "arduino:avr:nano",
     "programmer": "arduino:arduinoisp",
-    "port": "COM8",
+    "port": "COM24",
     "sketch": "LineFollower.ino",
     "configuration": "cpu=atmega328"
 }

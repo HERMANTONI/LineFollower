@@ -8,18 +8,18 @@
  */
 
 byte Pangkat[] = {1, 2, 4, 8, 16, 32, 64, 128};
-int Hitam[8]={1011,966,945,958,995,946,937,1002};
-/*putih
-0	661	569	788	913	759 741	916	//keramik
-944	691	608	720	886	718	719	911
+int Hitam[8]={995,990,990,990,990,970,940,990};
+/*
+putih
+991	954	929	936	954	841	759	953
 Hitam
-0	947	940	982	1007 984	963 1008 //solasi
-1005	948	947	963	1002	977	959	1004	
+1017	1015	1013	1012	1015	1007	994	1012	
 */
 int logPID;
 
 int Sensor2Biner() {
   int Sensor[8];
+  logPID=0;
   if (logPID < -80){
     for (int a = 0; a < 4; a++) {
       Sensor[a] = 0;
@@ -74,8 +74,8 @@ int Sensor2Biner() {
         // Serial.print(Temp, BIN); Serial.println("\t");
       }
     }
+    // Serial.println(TempSensor, BIN);
     return TempSensor;
-    // Serial.println();
   }
 }
 
