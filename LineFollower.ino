@@ -4,7 +4,8 @@
  * Board      : Arduino nano
  * Kategori   : LineFollower
  * Bagian     : ProgramUtama
- *  
+ * harap berkabar jika menggunakan program ini :)
+ * karena hasil pengujian teman teman membantu perbaiki bug program ini :)
  */
 
 #include "Library/Motor.h"
