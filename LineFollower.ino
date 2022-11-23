@@ -55,28 +55,28 @@ void loop() {
     int Biner = Sensor2Biner();
     // Serial.print(Biner); Serial.print("\t"); Serial.print(Biner, BIN); Serial.print("\t");
     int Predecision = Biner2Predecision(Biner);
-    Serial.print("Predecision = "); Serial.print(Predecision); Serial.print("\t");
+    // Serial.print("Predecision = "); Serial.print(Predecision); Serial.print("\t");
     if (Predecision == 254){
       int PID = Predecision2PID(LastPredecision);
       PID2Decision2(PID);
       RunMotor(Kiri1,Kiri0,Kanan1,Kanan0);
-      Serial.print("PID = "); Serial.print(PID); Serial.print("\t");
-      Serial.print("Kiri = "); Serial.print(Kiri1); Serial.print("\t"); Serial.print(Kiri0); Serial.print("\t");
-      Serial.print("Kanan = "); Serial.print(Kanan1); Serial.print("\t"); Serial.print(Kanan0); Serial.print("\t");
+      // Serial.print("PID = "); Serial.print(PID); Serial.print("\t");
+      // Serial.print("Kiri = "); Serial.print(Kiri1); Serial.print("\t"); Serial.print(Kiri0); Serial.print("\t");
+      // Serial.print("Kanan = "); Serial.print(Kanan1); Serial.print("\t"); Serial.print(Kanan0); Serial.print("\t");
     }
     else if (Predecision <= 40 and Predecision >= -40){
       LastPredecision = Predecision;
       int PID = Predecision2PID(Predecision);
       PID2Decision2(PID);
       RunMotor(Kiri1,Kiri0,Kanan1,Kanan0);
-      Serial.print("PID = "); Serial.print(PID); Serial.print("\t");
-      Serial.print("Kiri = "); Serial.print(Kiri1); Serial.print("\t"); Serial.print(Kiri0); Serial.print("\t");
-      Serial.print("Kanan = "); Serial.print(Kanan1); Serial.print("\t"); Serial.print(Kanan0); Serial.print("\t");
+      // Serial.print("PID = "); Serial.print(PID); Serial.print("\t");
+      // Serial.print("Kiri = "); Serial.print(Kiri1); Serial.print("\t"); Serial.print(Kiri0); Serial.print("\t");
+      // Serial.print("Kanan = "); Serial.print(Kanan1); Serial.print("\t"); Serial.print(Kanan0); Serial.print("\t");
     }
     else if (Predecision == 255){
       RunMotor(0,0,0,0);
     }
-    Serial.println("\t");
+    // Serial.println("\t");
     delay(100);
   }
 }

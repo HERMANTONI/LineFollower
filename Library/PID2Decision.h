@@ -8,7 +8,7 @@
  */
 
 int Kiri1, Kiri0, Kanan1, Kanan0;
-int SpeedKiri = 20, SpeedKanan = 20, SpeedKiriMax = 120, SpeedKananMax = 120;
+int SpeedKiri = 20, SpeedKanan = 20, SpeedKiriMax = 150, SpeedKananMax = 150;
 int PID2Decision(int PID){ //kiri minus kanan plus
 	if (PID > 0){
 		if (SpeedKiri < SpeedKiriMax or SpeedKanan < SpeedKananMax){
