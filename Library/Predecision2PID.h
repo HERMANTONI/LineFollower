@@ -8,7 +8,7 @@
  */
  
 float SetPoint = 0, LastError = 0;
-float KonstantaP = 3, KonstantaI = 4, KonstantaD = 3, Integral;
+float KonstantaP = 3, KonstantaI = 1.5, KonstantaD = 3, Integral;
 unsigned long ElapsedTime, LastTime;
 
 float Predecision2PID(float Data){
@@ -21,7 +21,7 @@ float Predecision2PID(float Data){
   if (Error == 0){
     Integral = 0;
   }
-  if (Error < -5 or Error > 5){
+  if (Error < -10 or Error > 10){
     Integral = Integral + (KonstantaI * Error);
     if (Integral > 50){ Integral = 50;}
     else if (Integral < -50){ Integral = -50;}
@@ -29,9 +29,9 @@ float Predecision2PID(float Data){
       Integral = Integral;
     }
   }
-  // else {
-  //   Integral = 0;
-  // }
+  else {
+    Integral = 0;
+  }
   unsigned long Time = millis();
   ElapsedTime = (Time - LastTime) / 100;
   Derivatif = KonstantaD * ((Error - LastError)/ElapsedTime);
