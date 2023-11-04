@@ -3,7 +3,7 @@
  * Email      : hermantoni0510@gmail.com
  * Board      : Arduino nano
  * Kategori   : LineFollower
- * Bagian     : Motor
+ * Bagian     : Biner to Motor
  * 
  */
 
