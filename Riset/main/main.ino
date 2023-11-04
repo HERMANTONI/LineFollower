@@ -1,16 +1,26 @@
+#include <EEPROM.h>
+
 int Sensor_eeprom[]={200,210,210,210,120};
 int JumlahSensor = 5;
 
 void setup() {
   Serial.begin(9600);
   pinMode(2,1); pinMode(3,1); pinMode(4,1); pinMode(5,1);
+  pinMode(8,INPUT_PULLUP); pinMode(13,1);
+  if(digitalRead(8) == 0) setSensor(); 
+  Serial.println("Read EEPROM");
+  for (int a=0; a<5; a++){
+    Sensor_eeprom[a] = EEPROM.read(a) * 4;
+    Serial.print(Sensor_eeprom[a]); Serial.print(" ");
+  }
+  Serial.println("Ready to Go");
 }
 
 void loop() {
   int Biner = Sensor2Biner();
   Biner2Motor(Biner);
-  Serial.println();
-  delay(1000);
+  // Serial.println();
+  // delay(1000);
 }
 
 int Sensor2Biner(){
@@ -19,7 +29,7 @@ int Sensor2Biner(){
   int TempSensor = 0;
   for (int a=0; a<JumlahSensor; a++){
     Sensor[a] = analogRead(a);
-    Serial.print(Sensor[a]); Serial.print(" ");
+    // Serial.print(Sensor[a]); Serial.print(" ");
     // delay(100);
   }
   for (int a=0; a<JumlahSensor; a++){
@@ -27,7 +37,7 @@ int Sensor2Biner(){
       TempSensor = TempSensor | Pangkat[a];
     }
   }
-  Serial.println(TempSensor,BIN);
+  // Serial.println(TempSensor,BIN);
   return TempSensor;
 }
 
@@ -83,6 +93,87 @@ int Motor(int Kiri, int Kanan){
   digitalWrite(KR0, 1);
   digitalWrite(KN0, 1);
 
-  Serial.print(SumKR); Serial.print(" "); Serial.print(SumKN); Serial.print(" ");
+  // Serial.print(SumKR); Serial.print(" "); Serial.print(SumKN); Serial.print(" ");
   return 0;
+}
+
+int setSensor(){
+  int SensorH[]={0,0,0,0,0,0};
+  int SensorH1[]={0,0,0,0,0,0};
+  int SensorL[]={1023,1023,1023,1023,1023,1023};
+  int SensorL1[]={1023,1023,1023,1023,1023,1023};
+  int SensorM[]={0,0,0,0,0,0};
+  if (digitalRead(8) == 0){
+    while(digitalRead(8) == 0) digitalWrite(13,1);
+    Serial.println("Baca Gelap");
+    digitalWrite(13,0); delay(500);
+    while(1){
+      digitalWrite(13,1); delay(100); digitalWrite(13,0); delay(500);
+      for (int a=0; a<5; a++){
+        SensorH[a] = max(SensorH[a], analogRead(a));
+        Serial.print(SensorH[a]); Serial.print(" ");
+      }
+      Serial.println();
+      for (int a=0; a<5; a++){
+        SensorL[a] = min(SensorL[a], analogRead(a));
+        Serial.print(SensorL[a]); Serial.print(" ");
+      }
+      Serial.println();
+      if (digitalRead(8) == 0) break;
+    }
+  }
+  if (digitalRead(8) == 0){
+    while(digitalRead(8) == 0) digitalWrite(13,1);
+    Serial.println("Baca Terang");
+    digitalWrite(13,0); delay(500);
+    while(1){
+      digitalWrite(13,1); delay(100); digitalWrite(13,0); delay(100);
+      digitalWrite(13,1); delay(100); digitalWrite(13,0); delay(500);
+      for (int a=0; a<5; a++){
+        SensorH1[a] = max(SensorH1[a], analogRead(a));
+        Serial.print(SensorH1[a]); Serial.print(" ");
+      }
+      Serial.println();
+      for (int a=0; a<5; a++){
+        SensorL1[a] = min(SensorL1[a], analogRead(a));
+        Serial.print(SensorL1[a]); Serial.print(" ");
+      }
+      Serial.println();
+      if (digitalRead(8) == 0) break;
+    }
+  }
+  if (digitalRead(8) == 0){
+    while(digitalRead(8) == 0) digitalWrite(13,1);
+    Serial.println("Kita Hitung");
+    digitalWrite(13,0); delay(500);
+    for (int a=0; a<10; a++){
+      digitalWrite(13,1); delay(100); digitalWrite(13,0); delay(100);
+    }
+    delay(500);
+    for (int a=0; a<5; a++){
+      SensorH[a] = max(SensorH[a], SensorH1[a]);
+      SensorL[a] = min(SensorL[a], SensorL1[a]);
+      Serial.print(SensorH[a]); Serial.print(" ");
+    }
+    Serial.println();
+    for (int a=0; a<5; a++){
+      Serial.print(SensorL[a]); Serial.print(" ");
+    }
+    Serial.println();
+    for (int a=0; a<5; a++){
+      SensorM[a] = SensorH[a] - SensorL[a];
+      SensorH[a] = SensorM[a] / 2;
+      Serial.print(SensorH[a]); Serial.print(" ");
+      SensorM[a] = SensorH[a] + SensorL[a];
+      EEPROM.write(a, SensorM[a] / 4);
+      Serial.print(SensorM[a]); Serial.print(" ");
+      Serial.print(EEPROM.read(a)); Serial.print(" ");
+    }
+    Serial.println();
+    for (int a=0; a<5; a++){
+      Sensor_eeprom[a] = EEPROM.read(a) * 4;
+      Serial.print(Sensor_eeprom[a]); Serial.print(" ");
+    }
+    Serial.println(); Serial.println("Hitung Siap");
+  }  
 }
