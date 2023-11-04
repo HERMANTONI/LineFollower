@@ -1,3 +1,12 @@
+/*
+ * Developer  : Hermantoni
+ * Email      : hermantoni0510@gmail.com
+ * Board      : Arduino nano
+ * Kategori   : LineFollower
+ * Bagian     : Motor
+ * 
+ */
+
 int Biner2Motor(int Biner){
   if (Biner == 0b11111) Motor(0,0);
   else if (Biner == 0b00001) Motor(2,0);
