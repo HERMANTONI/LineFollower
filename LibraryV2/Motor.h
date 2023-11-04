@@ -1,3 +1,12 @@
+/*
+ * Developer  : Hermantoni
+ * Email      : hermantoni0510@gmail.com
+ * Board      : Arduino nano
+ * Kategori   : LineFollower
+ * Bagian     : Motor
+ * 
+ */
+
 int Motor(int Kiri, int Kanan){
   int SpeedReff = 255; //range 155-255
   int KN1 = 5, KN0 = 4, KR1 = 3, KR0 = 2;
