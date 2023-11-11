@@ -3,12 +3,15 @@
 int Sensor_eeprom[]={200,210,210,210,120};
 int JumlahSensor = 5;
 int StopLoop = 0;
+int Tracking = 0;
 
 void setup() {
  Serial.begin(9600);
   pinMode(2,1); pinMode(3,1); pinMode(4,1); pinMode(5,1);
   pinMode(8,INPUT_PULLUP); pinMode(13,1);
+  pinMode(10,INPUT_PULLUP);
   if(digitalRead(8) == 0) setSensor(); 
+  if(digitalRead(10) == 0) setTracking(); 
   Serial.println("Read EEPROM");
   for (int a=0; a<5; a++){
     Sensor_eeprom[a] = EEPROM.read(a) * 4;
@@ -18,10 +21,106 @@ void setup() {
 }
 
 void loop() {
-  int Biner = Sensor2Biner();
-  Biner2Motor(Biner);
-  // Serial.println();
-  // delay(1000);
+  if(Tracking == 1){
+    TrackKN2Motor();
+  }
+  else if(Tracking == 2){
+    TrackKR2Motor();
+  }
+  else {
+    int Biner = Sensor2Biner();
+    Biner2Motor(Biner);
+    // Serial.println();
+    // delay(1000);
+  }
+}
+
+int setTracking(){
+  if (digitalRead(10) == 0){
+    while(digitalRead(10) == 0) digitalWrite(13,1);
+    Serial.println("Baca Gelap");
+    digitalWrite(13,0); delay(500);
+    Tracking = 1;
+    int a = 0;
+    while(1){
+      digitalWrite(13,1); delay(100); digitalWrite(13,0); delay(500);
+      if (digitalRead(10) == 0) break;
+      a = a+1;
+      if (a > 5) break;
+    }
+  }
+  if (digitalRead(10) == 0){
+    while(digitalRead(10) == 0) digitalWrite(13,1);
+    Serial.println("Baca Gelap");
+    digitalWrite(13,0); delay(500);
+    Tracking = 2;
+    int a = 0;
+    while(1){
+      digitalWrite(13,1); delay(100); digitalWrite(13,0); delay(500);
+      if (digitalRead(10) == 0) break;
+      a = a+1;
+      if (a > 5) break;
+    }
+  }
+  for (int a=0; a<10; a++){
+    digitalWrite(13,1); delay(100); digitalWrite(13,0); delay(100);
+  }
+}
+
+int TrackKN2Motor(){
+  int Sensor[]={0,0,0,0,0};
+  int Logic[]={0,0,0,0,0};
+  for (int a=0; a<JumlahSensor; a++){
+    Sensor[a] = analogRead(a);
+  }
+  for (int a=0; a<JumlahSensor; a++){
+    if (Sensor[a] > Sensor_eeprom[a]){
+      Logic[a] = 1;
+      StopLoop = 0;
+    }
+    else {
+      StopLoop +=1;
+    }
+  }
+  if (StopLoop < 1000){
+    if (Logic[0] == 1) Motor(1,-1);
+    if (Logic[1] == 1) Motor(1,0);
+    if (Logic[2] == 1) Motor(1,1);
+    if (Logic[3] == 1) Motor(0,1);
+    if (Logic[4] == 1) Motor(-1,1);
+  }
+  else {
+    Motor(0,0);
+    StopLoop = 1001;
+  }
+}
+
+int TrackKR2Motor(){
+  int Sensor[]={0,0,0,0,0};
+  int Logic[]={0,0,0,0,0};
+  for (int a=0; a<JumlahSensor; a++){
+    Sensor[a] = analogRead(a);
+  }
+  for (int a=0; a<JumlahSensor; a++){
+    if (Sensor[a] > Sensor_eeprom[a]){
+      Logic[a] = 1;
+      StopLoop = 0;
+    }
+    else {
+      StopLoop +=1;
+    }
+  }
+  if (StopLoop < 1000){
+    if (Logic[4] == 1) Motor(-1,1);
+    if (Logic[3] == 1) Motor(0,1);
+    if (Logic[2] == 1) Motor(1,1);
+    if (Logic[1] == 1) Motor(1,0);
+    if (Logic[0] == 1) Motor(1,-1);
+  }
+  else {
+    Motor(0,0);
+    StopLoop = 1001;
+  }
 }
 
 int Sensor2Biner(){
